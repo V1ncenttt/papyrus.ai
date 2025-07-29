@@ -34,7 +34,7 @@ graph TD
     H --> I[LangChain Retriever]
     I --> F
     I --> J[LLM Answer]
-    J --> K[Frontend (Streaming)]
+    J --> K[Frontend Streaming]
 ```
 
 ---
