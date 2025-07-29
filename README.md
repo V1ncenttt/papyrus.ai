@@ -21,15 +21,16 @@ ScholarMind is a multimodal research tool that allows users to upload PDFs and a
 ## 🧱 Architecture
 
 ```mermaid
-graph LR
-    A[PDF Upload] --> B[Mistral OCR (text + figures)]
-    B --> C1[Text Chunks]
-    B --> C2[Figure Captions + Images]
-    C2 --> D1[BLIP-2 Description]
-    C1 --> E[Embedding]
-    D1 --> E
-    E --> F[Vector DB]
-    G[User Query] --> H[LangGraph DAG]
+graph TD
+    A[PDF Upload] --> B[Mistral OCR]
+    B --> C1[Extracted Text Chunks]
+    B --> C2[Extracted Figures + Captions]
+    C2 --> D1[Figure Description via BLIP-2]
+    C1 --> E1[Text Embeddings]
+    D1 --> E2[Figure Description Embeddings]
+    E1 --> F[Vector DB]
+    E2 --> F
+    G[User Query] --> H[LangGraph Flow]
     H --> I[LangChain Retriever]
     I --> F
     I --> J[LLM Answer]
