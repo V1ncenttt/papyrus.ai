@@ -6,11 +6,11 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "3000:80"
+      - "3000:3000"
     depends_on:
       - backend
     environment:
-      - REACT_APP_BACKEND_URL=http://localhost:8000
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
     networks:
       - scholarmind-network
 
@@ -24,7 +24,7 @@ services:
       - db
       - vector_db
     environment:
-      - DATABASE_URL=postgresql://scholarmind_user:scholarmind_pass@db:5432/scholarmind_db
+      - DATABASE_URL=postgresql://scholarmind_user:scholarmind_pass@db:5433/scholarmind_db
       - VECTOR_DB_URL=http://vector_db:8000
       - PYTHONPATH=/app
     volumes:
@@ -39,7 +39,7 @@ services:
       - POSTGRES_USER=scholarmind_user
       - POSTGRES_PASSWORD=scholarmind_pass
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql

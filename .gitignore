@@ -1,7 +1,385 @@
+# ================================
+# SCHOLARMIND PROJECT GITIGNORE
+# ================================
+
+# ===== PYTHON / BACKEND =====
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[codz]
+*.py[cod]
 *$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff (if used):
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff (if used):
+instance/
+.webassets-cache
+
+# Scrapy stuff (if used):
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+.pdm-python
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# ===== NODE.JS / FRONTEND =====
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Next.js
+.next/
+out/
+build/
+
+# Testing
+coverage/
+.nyc_output
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Turbo
+.turbo
+
+# ===== DOCKER =====
+# Docker volumes and data
+postgres_data/
+chroma_data/
+docker-compose.override.yml
+
+# ===== DATABASE =====
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+# PostgreSQL dumps
+*.sql.backup
+*.dump
+
+# Database migration files (keep structure, ignore data)
+**/migrations/versions/*.py
+!**/migrations/versions/__init__.py
+
+# ===== AI / ML =====
+# Model files
+*.pkl
+*.joblib
+*.h5
+*.hdf5
+*.pb
+*.onnx
+*.tflite
+
+# Training data and logs
+training_data/
+logs/
+wandb/
+mlruns/
+.mlflow/
+
+# Embeddings cache
+embeddings_cache/
+vector_cache/
+
+# Hugging Face cache
+.cache/huggingface/
+
+# ===== MEDIA & UPLOADS =====
+# User uploads
+uploads/
+static/uploads/
+media/files/
+temp_files/
+
+# PDF processing temporary files
+*.tmp
+temp_pdf/
+extracted_text/
+
+# ===== SECURITY =====
+# API keys and secrets
+.secrets
+secrets.json
+.env.secret
+*.pem
+*.key
+*.crt
+*.p12
+
+# JWT keys
+jwt_private.key
+jwt_public.key
+
+# Environment files
+.env
+
+# ===== IDE / EDITORS =====
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# PyCharm
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Cursor AI Editor
+.cursorignore
+.cursorindexingignore
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ===== OPERATING SYSTEM =====
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ===== TOOLS & UTILITIES =====
+# Backup files
+*.bak
+*.backup
+*.orig
+
+# Temporary files
+*.temp
+*~
+
+# Archive files (unless needed)
+*.zip
+*.tar.gz
+*.rar
+
+# Ruff cache
+.ruff_cache/
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+htmlcov/
+
+# ===== PROJECT SPECIFIC =====
+# ScholarMind specific ignores
+research_papers/
+paper_uploads/
+vectordb_data/
+chroma_storage/
+
+# Local configuration overrides
+config.local.py
+settings.local.json
+
+# Development databases
+dev.db
+test.db
+
+# Local document storage
+documents/
+pdfs/
+temp_extractions/
+
+# ===== KEEP THESE FILES =====
+# Important: Don't ignore these
+!.gitkeep
+!.gitignore
+!README.md
+!requirements.txt
+!package.json
+!docker-compose.yml
+!Dockerfile
+!dockerfile
 
 # C extensions
 *.so
