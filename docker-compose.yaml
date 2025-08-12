@@ -11,6 +11,18 @@ services:
       - backend
     environment:
       - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NODE_ENV=development
+    volumes:
+      # Mount source code for hot reload
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - ./frontend/next.config.mjs:/app/next.config.mjs
+      - ./frontend/jsconfig.json:/app/jsconfig.json
+      - ./frontend/postcss.config.mjs:/app/postcss.config.mjs
+      - ./frontend/tailwind.config.js:/app/tailwind.config.js
+      # Exclude node_modules and .next from mounting
+      - /app/node_modules
+      - /app/.next
     networks:
       - scholarmind-network
 
