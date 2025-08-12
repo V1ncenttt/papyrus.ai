@@ -1,0 +1,41 @@
+.breadcrumb {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  width: 100%;
+}
+
+.breadcrumbItem {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+.breadcrumbLink {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 22px;
+}
+
+.breadcrumbLink:hover {
+  text-decoration: underline;
+}
+
+.separator {
+  font-size: 18px;
+  opacity: 0.4;
+}
+
+.breadcrumbText {
+  opacity: 0.6;
+  font-weight: 800;
+  font-size: 22px;
+}

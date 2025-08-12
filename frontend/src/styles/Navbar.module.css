@@ -1,0 +1,221 @@
+.navbarHeader {
+  position: relative;
+  width: 100%;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.navbarContainer {
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #161616 !important;
+}
+
+.logoBox {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+}
+.logoText {
+  font-weight: 600;
+}
+
+.navbarLinks {
+  position: relative;
+  margin-left: 130px;
+  display: none;
+  gap: 35px;
+  border-radius: 999px;
+}
+
+@media (min-width: 768px) {
+  .navbarLinks {
+    display: flex;
+  }
+}
+
+.navLink {
+  position: relative;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.navLink:hover {
+  color: #fff;
+}
+
+.navLink.active {
+  color: #fff;
+}
+
+.navbarActions {
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.loginBtn {
+  display: none;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+@media (min-width: 640px) {
+  .loginBtn {
+    display: inline-flex;
+  }
+}
+
+.getStartedBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  background: #fff;
+  text-decoration: none;
+}
+.getStartedBtn:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.mobileMenuBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  outline: 1px solid rgba(255, 255, 255, 0.1);
+}
+@media (min-width: 768px) {
+  .mobileMenuBtn {
+    display: none;
+  }
+}
+
+.activeIndicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  transition: transform 260ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    width 260ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 160ms ease;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .activeIndicator {
+    transition: none;
+  }
+}
+
+.mobilePanel {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .mobilePanel {
+    position: absolute;
+    inset: auto 0 0 0;
+    top: 64px;
+    z-index: 40;
+    display: block;
+    pointer-events: none;
+  }
+  .mobilePanelInner {
+    margin: 0 12px;
+    border-radius: 16px;
+    background: #161616;
+    outline: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    transform-origin: top;
+    opacity: 0;
+    transform: translateY(-8px) scaleY(0.98);
+    transition: opacity 150ms ease, transform 180ms ease;
+  }
+  .mobilePanelOpen {
+    pointer-events: auto;
+  }
+  .mobilePanelOpen .mobilePanelInner {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+
+  .mobileLink {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .mobileLink:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+  }
+  .mobileActive {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+  }
+
+  .mobileActions {
+    display: flex;
+    gap: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 8px;
+  }
+  .mobileLogin {
+    flex: 1;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.06);
+    outline: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .mobilePrimary {
+    flex: 1;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #000;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
+
+.navbarHeader {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}

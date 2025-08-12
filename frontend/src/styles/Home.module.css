@@ -1,0 +1,116 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  background: #161616;
+  color: #fff;
+  overflow: hidden;
+}
+
+.bgGlow {
+  position: absolute;
+  top: 500px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 400px;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(90px);
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      #B867F1 0%,
+      rgba(253,116,226,0.6) 35%,
+      rgba(184,103,241,0.25) 60%,
+      transparent 75%
+    );
+}
+
+
+.bgRings {
+  position: absolute;
+  margin-top: 260px;
+  inset: 0px;
+  background-image: url("/circular.png");
+  background-size: cover;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+/* --- HERO --- */
+.hero {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 96px 24px 48px;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  font-size: 12px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 24px;
+}
+.badgeLink { text-decoration: underline; cursor: pointer; }
+
+.title {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  font-size: clamp(40px, 7vw, 72px);
+  line-height: 1.05;
+  margin: 0 0 12px;
+}
+.titleAccent {
+  display: block;
+  background: linear-gradient(90deg, #BF00FF 0%, #B777EE 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  max-width: 760px;
+  margin: 16px auto 28px;
+  color: rgba(255,255,255,0.85);
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.ctaRow { display: flex; gap: 12px; justify-content: center; }
+.primaryCta {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 10px 16px; border-radius: 999px; font-weight: 600;
+  background: #fff; color: #000; text-decoration: none;
+}
+.primaryCta:hover { background: rgba(255,255,255,0.9); }
+
+.showcase {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 28px auto 0;
+  transition: all 0.1s ease-in-out;
+}
+
+.showcase:hover{
+  transform: scale(1.01);
+}
+
+.showcaseCard {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  background: #0f0f10;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.spacerSection { height: 40vh; }
