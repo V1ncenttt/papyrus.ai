@@ -1,11 +1,10 @@
-from fastapi import FastAPI, HTTPException, Depends, status
+import logging
+from datetime import datetime
+
+from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from typing import Optional, List
-import os
-from datetime import datetime
-import logging
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -39,24 +38,24 @@ class HealthResponse(BaseModel):
 
 class PaperUpload(BaseModel):
     title: str
-    authors: List[str]
-    abstract: Optional[str] = None
-    file_url: Optional[str] = None
+    authors: list[str]
+    abstract: str | None = None
+    file_url: str | None = None
 
 class PaperResponse(BaseModel):
     id: int
     title: str
-    authors: List[str]
-    abstract: Optional[str] = None
+    authors: list[str]
+    abstract: str | None = None
     upload_date: datetime
     status: str
 
 class QueryRequest(BaseModel):
     query: str
-    limit: Optional[int] = 10
+    limit: int | None = 10
 
 class QueryResponse(BaseModel):
-    results: List[dict]
+    results: list[dict]
     total_results: int
     query_time: float
 
@@ -141,7 +140,7 @@ async def upload_paper(
             detail="Failed to upload paper"
         )
 
-@app.get("/papers", response_model=List[PaperResponse])
+@app.get("/papers", response_model=list[PaperResponse])
 async def list_papers(
     skip: int = 0,
     limit: int = 10,

@@ -1,6 +1,7 @@
 import os
+
 from pydantic_settings import BaseSettings
-from typing import Optional
+
 
 class Settings(BaseSettings):
     """Application settings"""
@@ -22,10 +23,10 @@ class Settings(BaseSettings):
     chroma_port: int = int(os.getenv("CHROMA_PORT", "8001"))
     
     # OpenAI API
-    openai_api_key: Optional[str] = os.getenv("OPENAI_API_KEY")
+    openai_api_key: str | None = os.getenv("OPENAI_API_KEY")
     
     # LangSmith (optional for LangChain tracing)
-    langsmith_api_key: Optional[str] = os.getenv("LANGSMITH_API_KEY")
+    langsmith_api_key: str | None = os.getenv("LANGSMITH_API_KEY")
     langsmith_project: str = os.getenv("LANGSMITH_PROJECT", "scholarmind")
     
     # Security

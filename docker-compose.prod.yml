@@ -1,18 +1,20 @@
 
-
 services:
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      target: runner
     ports:
       - "3000:3000"
     depends_on:
       - backend
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://backend:8000
     networks:
       - scholarmind-network
+    restart: unless-stopped
 
   backend:
     build:
@@ -27,15 +29,10 @@ services:
       - DATABASE_URL=postgresql://scholarmind_user:scholarmind_pass@db:5432/scholarmind_db
       - VECTOR_DB_URL=http://vector_db:8000
       - PYTHONPATH=/app:/app/src
-    volumes:
-      # Mount source code for development
-      - ./backend/src:/app/src
-      - ./backend/config.py:/app/config.py
-      - ./backend/database.py:/app/database.py
-      - ./backend/vector_db.py:/app/vector_db.py
-      - ./backend/tests:/app/tests
+      - NODE_ENV=production
     networks:
       - scholarmind-network
+    restart: unless-stopped
 
   db:
     image: postgres:15-alpine
@@ -44,12 +41,18 @@ services:
       - POSTGRES_USER=scholarmind_user
       - POSTGRES_PASSWORD=scholarmind_pass
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     networks:
       - scholarmind-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U scholarmind_user -d scholarmind_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   vector_db:
     image: chromadb/chroma:latest
@@ -62,6 +65,12 @@ services:
       - chroma_data:/chroma/chroma
     networks:
       - scholarmind-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 volumes:
   postgres_data:

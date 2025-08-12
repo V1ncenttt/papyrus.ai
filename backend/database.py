@@ -1,8 +1,9 @@
-from sqlalchemy import create_engine, MetaData
+import logging
+
+from config import settings
+from sqlalchemy import MetaData, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from config import settings
-import logging
 
 logger = logging.getLogger(__name__)
 

@@ -1,7 +1,8 @@
+import logging
+
 import chromadb
 from chromadb.config import Settings as ChromaSettings
 from config import settings
-import logging
 
 logger = logging.getLogger(__name__)
 
