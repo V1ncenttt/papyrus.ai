@@ -1,8 +1,8 @@
-# 🧠 ScholarMind
+# 🧠 Papyrus.ai
 
 > AI-powered academic assistant that lets you **chat with your papers** — figures included.
 
-ScholarMind is a multimodal research tool that allows users to upload PDFs and ask natural language questions about their academic documents. It leverages **Mistral OCR**, **BLIP-2**, **LangChain**, and **LangGraph** to extract, understand, and retrieve both **text** and **figure-based insights** from papers.
+Papyrus is a multimodal research tool that allows users to upload PDFs and ask natural language questions about their academic documents. It leverages **Mistral OCR**, **BLIP-2**, **LangChain**, and **LangGraph** to extract, understand, and retrieve both **text** and **figure-based insights** from papers.
 
 ---
 
@@ -77,7 +77,7 @@ docker-compose up --build
 ## 🛠 Project Structure
 
 ```bash
-scholarmind/
+papyrus/
 ├── frontend/        # React frontend
 │   └── ...
 ├── backend/         # FastAPI + LangGraph
@@ -148,5 +148,5 @@ MIT License
 
 ## 📬 Contact
 
-Made by [Your Name]  
+Made by Axel Larnaudie Vincent Lefeuve  
 Reach out via [your-email@example.com] or [linkedin.com/in/yourname](#)
