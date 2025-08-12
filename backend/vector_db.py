@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 class VectorDatabase:
-    """ChromaDB client wrappers"""
+    """ChromaDB client wrapper"""
 
     def __init__(self):
         self.client = None
