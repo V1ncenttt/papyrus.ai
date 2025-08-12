@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 class VectorDatabase:
-    """ChromaDB client wrappebier"""
+    """ChromaDB client wrapper"""
 
     def __init__(self):
         self.client = None
@@ -42,6 +42,9 @@ class VectorDatabase:
 
     def add_documents(self, documents, embeddings, metadatas, ids):
         """Add documents to the collection"""
+        if not self.collection:
+            raise RuntimeError("Vector database not connected. Call connect() first.")
+
         try:
             self.collection.add(
                 documents=documents, embeddings=embeddings, metadatas=metadatas, ids=ids
@@ -54,6 +57,9 @@ class VectorDatabase:
 
     def search(self, query_embeddings, n_results=10, where=None):
         """Search for similar documents"""
+        if not self.collection:
+            raise RuntimeError("Vector database not connected. Call connect() first.")
+
         try:
             results = self.collection.query(
                 query_embeddings=query_embeddings, n_results=n_results, where=where
@@ -66,6 +72,9 @@ class VectorDatabase:
 
     def delete_documents(self, ids):
         """Delete documents by IDs"""
+        if not self.collection:
+            raise RuntimeError("Vector database not connected. Call connect() first.")
+
         try:
             self.collection.delete(ids=ids)
             logger.info(f"Deleted {len(ids)} documents from ChromaDB")
@@ -78,8 +87,8 @@ class VectorDatabase:
         """Check ChromaDB connection health"""
         try:
             if self.client:
-                # Try to list collections
-                collections = self.client.list_collections()
+                # Try to list collections to verify connection
+                self.client.list_collections()
                 return True
             return False
 
