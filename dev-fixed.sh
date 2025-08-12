@@ -4,54 +4,59 @@
 
 set -e  # Exit on any error
 
+# Use the correct conda environment
+PYTHON_CMD="/Users/vincentlesang/miniconda3/bin/conda run -p /Users/vincentlesang/miniconda3 --no-capture-output python"
+
 case "$1" in
     "lint")
         echo "🔍 Running Ruff linter..."
-        ruff check backend/ --config pyproject.toml
+        $PYTHON_CMD -m ruff check backend/ --config pyproject.toml
         ;;
 
     "format")
         echo "🎨 Formatting code with Ruff..."
-        ruff format backend/ --config pyproject.toml
+        $PYTHON_CMD -m ruff format backend/ --config pyproject.toml
         ;;
 
     "lint-fix")
         echo "🔧 Auto-fixing linting issues..."
-        ruff check backend/ --fix --config pyproject.toml
-        ruff format backend/ --config pyproject.toml
+        $PYTHON_CMD -m ruff check backend/ --fix --config pyproject.toml
+        $PYTHON_CMD -m ruff format backend/ --config pyproject.toml
         ;;
 
     "type-check")
         echo "🔍 Running type checking..."
-        mypy backend/src/ --config-file pyproject.toml
+        $PYTHON_CMD -m mypy backend/src/ --config-file pyproject.toml
         ;;
 
     "test")
         echo "🧪 Running tests..."
-        cd backend && python -m pytest tests/ -v --cov=src --cov-report=html
+        cd backend && $PYTHON_CMD -m pytest tests/ -v --cov=src --cov-report=html
         ;;
 
     "check-all")
         echo "🔍 Running all code quality checks..."
-        ./dev.sh lint
-        ./dev.sh type-check
-        ./dev.sh test
+        ./dev-fixed.sh lint
+        ./dev-fixed.sh type-check
+        ./dev-fixed.sh test
         echo "✅ All checks passed!"
         ;;
 
     "pre-commit")
         echo "🚀 Running pre-commit hooks on all files..."
-        pre-commit run --all-files
+        $PYTHON_CMD -m pre_commit run --all-files
         ;;
 
     "install-hooks")
+        echo "📌 Installing pre-commit and mypy..."
+        $PYTHON_CMD -m pip install pre-commit mypy types-requests
         echo "📌 Installing pre-commit hooks..."
-        pre-commit install
+        $PYTHON_CMD -m pre_commit install
         echo "✅ Pre-commit hooks installed!"
         ;;
 
     "start")
-        echo "� Starting Docker containers..."
+        echo "🐳 Starting Docker containers..."
         docker compose up -d
         ;;
 
@@ -92,6 +97,6 @@ case "$1" in
         echo "  rebuild       - Rebuild and start containers"
         echo "  logs          - Show container logs"
         echo ""
-        echo "Usage: ./dev.sh [command]"
+        echo "Usage: ./dev-fixed.sh [command]"
         ;;
 esac
