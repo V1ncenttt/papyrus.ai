@@ -9,8 +9,8 @@ if [ -f ".venv/bin/activate" ]; then
     # Use virtual environment
     PYTHON_CMD=".venv/bin/python"
     echo "📦 Using virtual environment (.venv)"
-elif [ -n "$CONDA_DEFAULT_ENV" ] && [ "$CONDA_DEFAULT_ENV" != "base" ]; then
-    # Use current conda environment if not base
+elif [ -n "$CONDA_DEFAULT_ENV" ]; then
+    # Use current conda environment
     PYTHON_CMD="python"
     echo "🐍 Using conda environment: $CONDA_DEFAULT_ENV"
 elif command -v python3 >/dev/null 2>&1; then
