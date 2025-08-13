@@ -15,17 +15,17 @@ This repository uses pre-commit hooks to automatically format and lint code befo
 ## Usage:
 ```bash
 # One-time setup (already done)
-./dev-fixed.sh install-hooks
+./dev.sh install-hooks
 
 # Normal development - hooks run automatically on commit
 git add .
 git commit -m "feat: add new feature"
 
 # Manual commands
-./dev-fixed.sh lint        # Check code
-./dev-fixed.sh format      # Format code
-./dev-fixed.sh lint-fix    # Auto-fix issues
-./dev-fixed.sh pre-commit  # Run all hooks manually
+./dev.sh lint        # Check code
+./dev.sh format      # Format code
+./dev.sh lint-fix    # Auto-fix issues
+./dev.sh pre-commit  # Run all hooks manually
 ```
 
-If any issues can't be auto-fixed, the commit will be blocked until you fix them manually.
+If any issues can't be auto, the commit will be blocked until you fix them manually.
