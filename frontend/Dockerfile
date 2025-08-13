@@ -14,25 +14,20 @@ RUN apk add --no-cache \
 # Copy package files
 COPY package.json package-lock.json* ./
 
-# Create .npmrc for proper architecture
-RUN echo "target_arch=arm64" > .npmrc && \
-    echo "target_platform=linux" >> .npmrc && \
-    echo "target_libc=musl" >> .npmrc
-
-# Clear npm cache and install dependencies
-RUN npm cache clean --force
+# Install dependencies
 RUN npm ci
-RUN npm rebuild
 
 # Copy source code
 COPY . .
 
-# Disable telemetry
+# Disable telemetry and enable hot reload
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=development
+ENV WATCHPACK_POLLING=true
+ENV CHOKIDAR_USEPOLLING=true
 
 # Expose port
 EXPOSE 3000
 
 # Start development server with hot reload
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "dev", "--", "--hostname", "0.0.0.0"]
