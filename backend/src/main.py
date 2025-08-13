@@ -90,6 +90,7 @@ async def health_check():
     try:
         # TODO: Add actual database health checks
         db_status = "connected"  # Replace with actual DB ping
+        print(f"Health check: DB status={db_status}")
         vector_db_status = "connected"  # Replace with actual vector DB ping
         print(
             f"Health check: DB status={db_status}, Vector DB status={vector_db_status}"
