@@ -1,6 +1,7 @@
 import logging
 from datetime import datetime
 
+from api.v1.auth import router as auth_router
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -18,6 +19,8 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
 )
+
+app.include_router(auth_router)
 
 # CORS middleware
 app.add_middleware(
