@@ -101,30 +101,36 @@ export default function AIChat() {
         </ul>
       </aside>
 
-      <main className={styles.panel}>
-        <div className={styles.headerWrapper}>
-          <div className={layout.headerBreadcrumb}>
-            <Breadcrumb
-              items={[
-                { label: "My libraries", href: "/libraries" },
-                { label: folder.name, href: `/libraries/${folder.id}` },
-                { label: "AI Assistant", href: "" },
-              ]}
-            />
-          </div>
-
-          <Separator className={styles.separator} />
-
-          <Card className={styles.headerCard}>
-            <CardContent className={styles.headerCardContent}>
-              <InsertDriveFileOutlinedIcon />
-              <strong>{folder.name}</strong>
-              <span className={styles.headerCount}>
-                • {papers.length} paper{papers.length === 1 ? "" : "s"}
-              </span>
-            </CardContent>
-          </Card>
+      <main className={`${styles.content} ${styles.chatContainer}`}>
+        <div className={layout.headerBreadcrumb}>
+          <Breadcrumb
+            items={[
+              { label: "My libraries", href: "/libraries" },
+              { label: folder.name, href: `/libraries/${folder.id}` },
+              { label: "AI Assistant", href: "" },
+            ]}
+          />
         </div>
+
+        <Separator
+          style={{
+            height: 1,
+            width: "100%",
+            background: "rgba(255,255,255,0.12)",
+            marginTop: "40px",
+            marginBottom: "30px",
+          }}
+        />
+
+        <Card className={styles.headerCard}>
+          <CardContent className={styles.headerCardContent}>
+            <InsertDriveFileOutlinedIcon />
+            <strong>{folder.name}</strong>
+            <span className={styles.headerCount}>
+              • {papers.length} paper{papers.length === 1 ? "" : "s"}
+            </span>
+          </CardContent>
+        </Card>
 
         <div className={styles.chatScroll}>
           {messages.map((m, i) => (

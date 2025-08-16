@@ -8,7 +8,7 @@ export default function Home() {
       <div className={styles.bgRings} />
       <section className={styles.hero}>
         <div className={styles.badge}>
-         Announcing our very-first waiting list! <a className={styles.badgeLink}>Read more</a>
+          New version of Launch UI is out! <a className={styles.badgeLink}>Read more</a>
         </div>
 
         <h1 className={styles.title}>
