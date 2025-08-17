@@ -1,0 +1,140 @@
+.page {
+  position: relative;
+  height: calc(100vh - 100px);
+  background: #161616;
+  color: #fff;
+  overflow: hidden;
+}
+
+.bgGlow {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 250px;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(90px);
+  background: radial-gradient(
+      circle at 50% 45%,
+      rgba(253, 116, 226, 0.6),
+      transparent 60%
+    ),
+    radial-gradient(circle at 50% 55%, #b867f1, transparent 65%);
+}
+.bgRings {
+  position: absolute;
+  inset: 0;
+  margin-top: 220px;
+  background-image: url("/circular.png");
+  background-size: cover;
+  background-position: center top;
+  opacity: 0.18;
+  z-index: 0;
+}
+
+/* Section centrale */
+.hero {
+  position: relative;
+  z-index: 1;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 100px 24px 60px;
+  text-align: center;
+}
+
+.title {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  font-size: clamp(28px, 5vw, 36px);
+  margin: 0 0 8px;
+}
+.titleAccent {
+  background: linear-gradient(90deg, #b867f1, #fd74e2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
+  font-weight: 300;
+  max-width: 320px;
+  margin: 0 auto 22px;
+}
+
+/* Card login */
+.card {
+  background: #0f0f10;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  text-align: left;
+}
+
+.error {
+  color: #f87171;
+  font-size: 13px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  background: #fff;
+  color: #000;
+  border: none;
+  cursor: pointer;
+}
+.primaryBtn:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+.secondaryBtn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  cursor: pointer;
+}
+.secondaryBtn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.link {
+  font-size: 12px;
+  opacity: 0.8;
+  text-decoration: underline;
+}
+.link:hover { opacity: 1; }

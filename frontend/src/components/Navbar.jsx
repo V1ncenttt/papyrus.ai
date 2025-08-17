@@ -5,6 +5,8 @@ import CloseIcon from "@mui/icons-material/Close"; // +++
 import styles from "@/styles/Navbar.module.css";
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { getCurrentUser, onAuthChange, logout } from "@/lib/auth";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const nav = [
   { href: "/", label: "Home" },
@@ -14,11 +16,37 @@ const nav = [
 
 export default function Navbar() {
   const { pathname, events } = useRouter();
-  const isActive = (href) => (href === "/" ? pathname === href : pathname.startsWith(href));
+  const [user, setUser] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const userMenuRef = useRef(null);
+
+  useEffect(() => {
+    setUser(getCurrentUser());
+    const off = onAuthChange(setUser);
+    return off;
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onClick = (e) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener("click", onClick);
+    return () => window.removeEventListener("click", onClick);
+  }, [menuOpen]);
+
+  const isActive = (href) =>
+    href === "/" ? pathname === href : pathname.startsWith(href);
 
   const containerRef = useRef(null);
   const itemRefs = useRef({});
-  const [indicatorStyle, setIndicatorStyle] = useState({ width: 0, x: 0, visible: false });
+  const [indicatorStyle, setIndicatorStyle] = useState({
+    width: 0,
+    x: 0,
+    visible: false,
+  });
 
   const activeHref = useMemo(
     () => nav.find((n) => isActive(n.href))?.href ?? null,
@@ -72,7 +100,13 @@ export default function Navbar() {
     <header className={styles.navbarHeader}>
       <nav className={styles.navbarContainer}>
         <Link href="/" className={styles.navbarLogo}>
-          <Image src="/logo.png" alt="ScholarMind logo" width={45} height={45} priority />
+          <Image
+            src="/logo.png"
+            alt="Papyrus logo"
+            width={45}
+            height={45}
+            priority
+          />
         </Link>
 
         <div className={styles.navbarLinks} ref={containerRef}>
@@ -90,7 +124,9 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               ref={(el) => (itemRefs.current[item.href] = el)}
-              className={`${styles.navLink} ${isActive(item.href) ? styles.active : ""}`}
+              className={`${styles.navLink} ${
+                isActive(item.href) ? styles.active : ""
+              }`}
             >
               {item.label}
             </Link>
@@ -98,8 +134,57 @@ export default function Navbar() {
         </div>
 
         <div className={styles.navbarActions}>
-          <Link href="/login" className={styles.loginBtn}>Login</Link>
-          <Link href="/get-started" className={styles.getStartedBtn}>Get started</Link>
+          {user ? (
+            <div className={styles.rightActions} ref={userMenuRef}>
+              <button
+                type="button"
+                className={styles.userBtn}
+                aria-haspopup="menu"
+                aria-expanded={menuOpen}
+                onClick={() => setMenuOpen((v) => !v)}
+              >
+                <span className={styles.usernameNav}>{user.username}</span>
+                <span
+                  className={`${styles.chevron} ${
+                    menuOpen ? styles.chevronOpen : ""
+                  }`}
+                >
+                  <ExpandMoreIcon fontSize="small" />
+                </span>
+              </button>
+              {menuOpen && (
+                <div className={styles.userMenu} role="menu">
+                  <Link
+                    href="/account"
+                    className={styles.userMenuItem}
+                    role="menuitem"
+                  >
+                    My profile
+                  </Link>
+                  <button
+                    type="button"
+                    className={`${styles.userMenuItem} ${styles.userMenuDanger}`}
+                    role="menuitem"
+                    onClick={() => {
+                      setMenuOpen(false);
+                      logout();
+                    }}
+                  >
+                    Log out
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <Link href="/login" className={styles.loginBtn}>
+                Login
+              </Link>
+              <Link href="/get-started" className={styles.getStartedBtn}>
+                Get started
+              </Link>
+            </>
+          )}
 
           <button
             type="button"
@@ -109,26 +194,56 @@ export default function Navbar() {
             aria-label="Toggle navigation"
             onClick={() => setOpen((v) => !v)}
           >
-            {open ? <CloseIcon fontSize="small" /> : <MenuIcon fontSize="small" />}
+            {open ? (
+              <CloseIcon fontSize="small" />
+            ) : (
+              <MenuIcon fontSize="small" />
+            )}
           </button>
         </div>
       </nav>
 
-      <div id="mobile-panel" className={`${styles.mobilePanel} ${open ? styles.mobilePanelOpen : ""}`}>
+      <div
+        id="mobile-panel"
+        className={`${styles.mobilePanel} ${
+          open ? styles.mobilePanelOpen : ""
+        }`}
+      >
         <div className={styles.mobilePanelInner}>
           {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`${styles.mobileLink} ${isActive(item.href) ? styles.mobileActive : ""}`}
+              className={`${styles.mobileLink} ${
+                isActive(item.href) ? styles.mobileActive : ""
+              }`}
             >
               {item.label}
             </Link>
           ))}
 
           <div className={styles.mobileActions}>
-            <Link href="/login" className={styles.mobileLogin}>Login</Link>
-            <Link href="/get-started" className={styles.mobilePrimary}>Get started</Link>
+            {user ? (
+              <>
+                <span className={styles.mobileLogin}>{user.username}</span>
+                <button
+                  type="button"
+                  onClick={logout}
+                  className={styles.mobilePrimary}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/login" className={styles.mobileLogin}>
+                  Login
+                </Link>
+                <Link href="/get-started" className={styles.mobilePrimary}>
+                  Get started
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>

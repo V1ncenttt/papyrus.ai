@@ -49,6 +49,104 @@
   transition: color 0.2s ease-in-out;
 }
 
+.usernameNav {
+  position: relative;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.expandMoreBtn {
+  cursor: pointer;
+}
+
+.rightActions {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.userBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.userBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.usernameNav {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.chevron {
+  transition: transform 180ms ease;
+  transform: rotate(0deg);
+}
+.chevronOpen {
+  transform: rotate(180deg);
+}
+.chevron svg {
+  pointer-events: none;
+}
+
+.userMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 180px;
+  background: #161616;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  padding: 6px;
+  z-index: 60;
+  animation: fadeIn 120ms ease;
+}
+
+.userMenuItem {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  display: block;
+  cursor: pointer;
+}
+.userMenuItem:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.userMenuDanger {
+  color: #ffb4b4;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .navLink:hover {
   color: #fff;
 }

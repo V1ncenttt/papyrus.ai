@@ -1,0 +1,89 @@
+.page {
+  position: relative;
+  min-height: calc(100vh - 100px);
+  background: #161616;
+  color: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.bgGlow {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 600px;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(90px);
+  background: radial-gradient(
+      circle at 50% 45%,
+      rgba(253, 116, 226, 0.6),
+      transparent 60%
+    ),
+    radial-gradient(circle at 50% 55%, #b867f1, transparent 65%);
+}
+
+.bgRings {
+  position: absolute;
+  inset: 0;
+  margin-top: 180px;
+  background-image: url("/circular.png");
+  background-size: cover;
+  background-position: center top;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  padding: 72px 24px;
+}
+
+.title {
+  font-weight: 900;
+  font-size: clamp(48px, 10vw, 96px);
+  line-height: 1.05;
+  margin: 0 0 12px;
+}
+
+.titleAccent {
+  background: linear-gradient(90deg, #b867f1, #fd74e2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 18px;
+  margin-bottom: 28px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.primaryBtn {
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+}
+.primaryBtn:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+

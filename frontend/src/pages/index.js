@@ -8,7 +8,7 @@ export default function Home() {
       <div className={styles.bgRings} />
       <section className={styles.hero}>
         <div className={styles.badge}>
-          New version of Launch UI is out! <a className={styles.badgeLink}>Read more</a>
+          New version of Papyrus is out! <a className={styles.badgeLink}>Read more</a>
         </div>
 
         <h1 className={styles.title}>
@@ -18,7 +18,7 @@ export default function Home() {
 
         <p className={styles.subtitle}>
           Upload PDFs, organize collections and chat with AI about research.
-          The more elegant way to manage your academic papers.
+          The most elegant way to manage your academic papers.
         </p>
 
         <div className={styles.ctaRow}>
