@@ -1,0 +1,15 @@
+# Ignore files/folders that should not be copied into the image
+node_modules
+.next
+.git
+.gitignore
+npm-debug.log*
+yarn.lock
+pnpm-lock.yaml
+dist
+coverage
+Dockerfile
+docker-compose*
+README.md
+.env
+.env.*

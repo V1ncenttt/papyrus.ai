@@ -14,8 +14,8 @@ RUN apk add --no-cache \
 # Copy package files
 COPY package.json package-lock.json* ./
 
-# Install dependencies
-RUN npm ci
+# Install dependencies, including dev dependencies
+RUN npm ci --include=dev
 
 # Copy source code
 COPY . .
@@ -30,4 +30,4 @@ ENV CHOKIDAR_USEPOLLING=true
 EXPOSE 3000
 
 # Start development server with hot reload
-CMD ["npm", "run", "dev", "--", "--hostname", "0.0.0.0"]
+CMD ["npm", "run", "dev"]

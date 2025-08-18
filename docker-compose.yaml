@@ -20,9 +20,6 @@ services:
       - ./frontend/jsconfig.json:/app/jsconfig.json
       - ./frontend/postcss.config.mjs:/app/postcss.config.mjs
       - ./frontend/tailwind.config.js:/app/tailwind.config.js
-      # Exclude node_modules and .next from mounting
-      - /app/node_modules
-      - /app/.next
     networks:
       - scholarmind-network
 
