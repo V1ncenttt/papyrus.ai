@@ -10,10 +10,12 @@ import { Separator } from "@/components/ui/separator";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
 import { useMemo, useState } from "react";
+import UploadPDFModal from "@/components/Modal/UploadPDFModal";
 
 const EMPTY = [];
 
 export default function FolderView() {
+  const [uploadOpen, setUploadOpen] = useState(false);
   const router = useRouter();
   const { query } = router;
   const { folderId } = query;
@@ -109,7 +111,11 @@ export default function FolderView() {
               btnText={"Chat with AI"}
               onClick={() => router.push(`/libraries/${folder.id}/ai-chat`)}
             />
-            <Button startIcon={<AddIcon />} btnText={"Add"} />
+            <Button
+              startIcon={<AddIcon />}
+              btnText={"Add"}
+              onClick={() => setUploadOpen(true)}
+            />
           </div>
         </div>
         <Separator
@@ -177,6 +183,13 @@ export default function FolderView() {
             ))}
           </div>
         )}
+        <UploadPDFModal
+          open={uploadOpen}
+          onClose={() => setUploadOpen(false)}
+          onUpload={(file) => {
+            console.log("PDF sélectionné:", file);
+          }}
+        />
       </main>
     </div>
   );
