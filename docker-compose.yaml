@@ -14,8 +14,6 @@ services:
       - CHOKIDAR_USEPOLLING=true
     volumes:
       # Mount source code for hot reload
-      - ./frontend/src:/app/src
-      - ./frontend/public:/app/public
       - ./frontend/next.config.mjs:/app/next.config.mjs
       - ./frontend/jsconfig.json:/app/jsconfig.json
       - ./frontend/postcss.config.mjs:/app/postcss.config.mjs
