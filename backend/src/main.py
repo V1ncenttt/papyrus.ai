@@ -2,6 +2,7 @@ import logging
 from datetime import datetime
 
 from api.v1.auth import router as auth_router
+from database import init_db
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -250,8 +251,8 @@ async def startup_event():
     logger.info("Starting ScholarMind API...")
 
     try:
-        # TODO: Initialize database connection
-        # db_connection = create_database_connection()
+        # Initialize SQLite database and create tables
+        init_db()
 
         # TODO: Initialize vector database client
         # vector_db_client = create_chroma_client()

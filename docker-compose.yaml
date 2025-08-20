@@ -39,9 +39,6 @@ services:
     volumes:
       # Mount source code for development
       - ./backend/src:/app/src
-      - ./backend/config.py:/app/config.py
-      - ./backend/database.py:/app/database.py
-      - ./backend/vector_db.py:/app/vector_db.py
       - ./backend/tests:/app/tests
     networks:
       - scholarmind-network

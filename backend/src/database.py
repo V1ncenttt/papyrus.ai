@@ -1,15 +1,22 @@
 import logging
+import os
 
-from config import settings
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 logger = logging.getLogger(__name__)
 
+# SQLite database URL for development
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./scholarmind.db")
+
 # Create SQLAlchemy engine
 engine = create_engine(
-    settings.database_url, pool_pre_ping=True, pool_recycle=300, echo=settings.debug
+    DATABASE_URL,
+    connect_args={"check_same_thread": False}
+    if DATABASE_URL.startswith("sqlite")
+    else {},
+    echo=False,
 )
 
 # Create SessionLocal class
@@ -38,12 +45,12 @@ def get_db():
 def init_db():
     """Initialize database tables"""
     try:
-        # Import all models here to register them with Base
-        # from . import models
+        # Import models to register them with Base
 
         # Create all tables
         Base.metadata.create_all(bind=engine)
-        logger.info("Database tables created successfully")
+        logger.info("✅ SQLite database tables created successfully")
+        logger.info(f"📂 Database location: {DATABASE_URL}")
     except Exception as e:
         logger.error(f"Failed to initialize database: {str(e)}")
         raise

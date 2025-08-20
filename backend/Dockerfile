@@ -23,8 +23,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Copy configuration files
-COPY config.py database.py vector_db.py ./
+
 
 # Copy source code
 COPY src/ ./src/
