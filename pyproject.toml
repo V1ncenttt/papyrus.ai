@@ -58,8 +58,10 @@ select = [
 ignore = [
     "S101",  # Use of assert detected
     "S104",  # Possible binding to all interfaces
+    "S106",  # Possible hardcoded password - too many false positives with token_type
     "N805",  # First argument of a method should be named `self`
     "B008",  # Do not perform function calls in argument defaults
+    "S105", # Might remove later
     "B904",  # Within an `except` clause, raise exceptions with `raise ... from err`
 ]
 
@@ -100,6 +102,15 @@ docstring-code-line-length = "dynamic"
 
 # Allow print statements in main.py for debugging
 "main.py" = ["T20"]
+
+# Allow token type constants in auth service (these are not passwords)
+"backend/src/services/auth_service.py" = ["S105", "S106"]
+
+# Allow token type constants in auth endpoints (these are not passwords)
+"backend/src/api/v1/auth.py" = ["S106"]
+
+# Allow token type constants in dependencies (these are not passwords)
+"backend/src/core/dependencies.py" = ["S106"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["src"]

@@ -51,3 +51,23 @@ class TokenData(BaseModel):
     """Schema for token data"""
 
     username: str | None = None
+
+
+class LoginResponse(BaseModel):
+    """Schema for login response"""
+
+    message: str
+    user: UserResponse
+
+
+class SignupResponse(BaseModel):
+    """Schema for signup response"""
+
+    message: str
+    user: UserResponse
+
+
+class RefreshResponse(BaseModel):
+    """Schema for refresh response"""
+
+    message: str

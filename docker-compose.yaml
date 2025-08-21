@@ -30,6 +30,8 @@ services:
     depends_on:
       - db
       - vector_db
+    env_file:
+      - ./backend/.env
     environment:
       - DATABASE_URL=postgresql://scholarmind_user:scholarmind_pass@db:5432/scholarmind_db
       - VECTOR_DB_URL=http://vector_db:8000
