@@ -10,7 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
 import { useMemo, useState } from "react";
-import UploadPDFModal from "@/components/Modal/UploadPDFModal";
+import UploadPDFModal from "@/components/modal/UploadPDFModal";
 
 const EMPTY = [];
 

@@ -39,7 +39,7 @@ services:
     environment:
       - POSTGRES_DB=scholarmind_db
       - POSTGRES_USER=scholarmind_user
-      - POSTGRES_PASSWORD=scholarmind_pass
+      - POSTGRES_PASSWORD=scholarmind_password
     ports:
       - "5432:5432"
     volumes:
