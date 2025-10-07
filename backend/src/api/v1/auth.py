@@ -291,7 +291,7 @@ async def login(
         max_age=settings.access_token_expire_minutes * 60,
         httponly=True,
         secure=settings.environment == "production",
-        samesite="lax",
+        samesite="strict",
     )
     response.set_cookie(
         key="refresh_token",
@@ -299,7 +299,7 @@ async def login(
         max_age=settings.refresh_token_expire_days * 24 * 60 * 60,
         httponly=True,
         secure=settings.environment == "production",
-        samesite="lax",
+        samesite="strict",
     )
 
     logger.info(f"User login successful: {user.username}")

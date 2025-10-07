@@ -20,6 +20,19 @@ class Settings(BaseSettings):
     refresh_token_expire_days: int = 7
     environment: str = "development"
 
+    # Storage configuration
+    storage_provider: str = "local"  # "local" or "s3"
+    local_upload_dir: str = "uploads"
+    
+    # S3 settings (only needed in production)
+    aws_access_key_id: str = ""
+    aws_secret_access_key: str = ""
+    aws_region: str = "us-east-1"
+    s3_bucket_name: str = ""
+
+    mistral_api_key: str
+    huggingface_api_token: str
+
     # Database
     database_url: str = "sqlite:///./scholarmind.db"
 

@@ -40,6 +40,7 @@ services:
       # Mount source code for development
       - ./backend/src:/app/src
       - ./backend/tests:/app/tests
+      - ./backend/uploads:/app/uploads  
     networks:
       - papyrus-network
 
@@ -68,7 +69,11 @@ services:
       - "8001:8000"
     environment:
       - CHROMA_SERVER_HOST=0.0.0.0
+      - IS_PERSISTENT=TRUE
+      - ANONYMIZED_TELEMETRY=TRUE
       - CHROMA_SERVER_HTTP_PORT=8000
+      - CHROMA_SERVER_CORS_ALLOW_ORIGINS=["http://localhost:3000","http://localhost:8001"]
+
     volumes:
       - chroma_data:/chroma/chroma
     networks:

@@ -19,21 +19,26 @@ RUN apt-get update && apt-get install -y \
 # Copy requirements file first for better caching
 COPY requirements.txt .
 
-# Install Python dependencies
+# Install Python dependencies AS ROOT
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-
+# Create config directories and set permissions BEFORE switching users
+RUN mkdir -p /app/config && chmod 777 /app/config
+RUN chmod -R 777 /usr/local/lib/python3.11/site-packages/pdf2bib/ || true
+RUN chmod -R 777 /usr/local/lib/python3.11/site-packages/pdf2doi/ || true
+ENV PDF2BIB_CONFIG_DIR=/app/config
+ENV PDF2DOI_CONFIG_DIR=/app/config
 
 # Copy source code
 COPY src/ ./src/
-
-# Copy tests (optional)
 COPY tests/ ./tests/
 
-# Create non-root user for security
+# Create non-root user and set ownership
 RUN useradd --create-home --shell /bin/bash app && \
     chown -R app:app /app
+
+# Switch to non-root user AFTER setting permissions
 USER app
 
 # Expose port
