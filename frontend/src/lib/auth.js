@@ -2,8 +2,8 @@ const STORAGE_USER = "sm_auth_user";
 const STORAGE_USERS = "sm_auth_users";
 
 const DEFAULT_USERS = [
-  { email: "axel@tpd.fr", password: "123", username: "Axel" },
-  { email: "vincent@tpd.fr", password: "123", username: "Vincent" },
+  { email: "axel@axel.fr", password: "123", username: "Axel" },
+  { email: "vincent@vincent.fr", password: "123", username: "Vincent" },
 ];
 
 function loadUsers() {

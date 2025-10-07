@@ -1,0 +1,85 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  width: min(960px, calc(100vw - 32px));
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 20px 20px 16px 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px 16px 6px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.iconBtn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.iconBtn:hover {
+  opacity: 1;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.primary,
+.secondary {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  cursor: pointer;
+}
+.primary[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.primary:hover:not([disabled]) {
+  background: rgba(255, 255, 255, 0.12);
+}
+.secondary {
+  background: transparent;
+}
+.secondary:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.card {
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-inline: 10px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  text-align: left;
+}

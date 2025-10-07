@@ -5,11 +5,13 @@ import FolderIcon from "@mui/icons-material/Folder";
 import Breadcrumb from "@/components/Breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import Button from "@/components/Button";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
+import AddFolderModal from "@/components/modal/AddFolderModal";
+import { useState } from "react";
 
 export default function Libraries() {
-
   /* TODO : i18n translation */
+  const [addFolderOpen, setAddFolderOpen] = useState(false);
 
   return (
     <div className={styles.page}>
@@ -32,7 +34,7 @@ export default function Libraries() {
       <main className={styles.content}>
         <div className={styles.headerBreadcrumb}>
           <Breadcrumb items={[{ label: "My libraries", href: "" }]} />
-          <Button startIcon={<AddIcon/>} btnText={"Add"}/>
+          <Button startIcon={<AddIcon />} btnText={"Add"} onClick={() => {setAddFolderOpen(true)}}/>
         </div>
         <Separator
           style={{
@@ -59,6 +61,10 @@ export default function Libraries() {
             </Link>
           ))}
         </div>
+        <AddFolderModal
+          open={addFolderOpen}
+          onClose={() => setAddFolderOpen(false)}
+        />
       </main>
     </div>
   );

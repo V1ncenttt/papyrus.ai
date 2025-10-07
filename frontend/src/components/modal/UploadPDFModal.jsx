@@ -25,7 +25,7 @@ export default function UploadPdfModal({ open, onClose, onUpload }) {
     const isPdf =
       f.type === "application/pdf" || /\.pdf$/i.test(f.name || "");
     if (!isPdf) {
-      setError("Seuls les fichiers PDF sont acceptés.");
+      setError("Only PDF files are accepted.");
       return false;
     }
     setError("");

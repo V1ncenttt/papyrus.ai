@@ -10,7 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
 import { useMemo, useState } from "react";
-import UploadPDFModal from "@/components/modal/UploadPDFModal";
+import UploadPDFModal from "@/components/Modal/UploadPDFModal";
 
 const EMPTY = [];
 
@@ -187,7 +187,7 @@ export default function FolderView() {
           open={uploadOpen}
           onClose={() => setUploadOpen(false)}
           onUpload={(file) => {
-            console.log("PDF sélectionné:", file);
+            console.log("PDF selected:", file);
           }}
         />
       </main>
