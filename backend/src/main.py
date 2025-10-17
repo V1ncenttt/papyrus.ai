@@ -3,6 +3,7 @@ from datetime import datetime
 
 from api.v1.auth import router as auth_router
 from api.v1.files import router as files_router
+from api.v1.chat import router as chat_router
 from api.v1.documents import router as documents_router
 from database import init_db
 from fastapi import Depends, FastAPI, HTTPException, status
@@ -26,6 +27,7 @@ app = FastAPI(
 app.include_router(auth_router)
 app.include_router(files_router)
 app.include_router(documents_router)
+app.include_router(chat_router)
 
 # CORS middleware
 app.add_middleware(

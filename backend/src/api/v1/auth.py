@@ -49,6 +49,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from jose import JWTError
 from models.user import User
 from pydantic import ValidationError
+from api.v1.docs.auth_docs import signup_docs, login_docs
 from schemas.auth import (
     LoginResponse,
     RefreshResponse,
@@ -124,7 +125,7 @@ def _safely_invalidate_token(token: str | None, token_type: str) -> None:
         )
 
 
-@router.post("/signup", response_model=SignupResponse)
+@router.post("/signup", response_model=SignupResponse, **signup_docs)
 async def signup(
     user_data: UserCreate, response: Response, db: Session = Depends(get_db)
 ):
@@ -232,7 +233,7 @@ async def signup(
         )
 
 
-@router.post("/login", response_model=LoginResponse)
+@router.post("/login", response_model=LoginResponse, **login_docs)
 async def login(
     response: Response,
     form_data: OAuth2PasswordRequestForm = Depends(),

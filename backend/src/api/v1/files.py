@@ -10,6 +10,7 @@ from schemas.file import FileUploadResponse, DocumentStatusResponse
 from core.config import settings
 from core.dependencies import get_current_active_user
 from models.user import User
+from api.v1.docs.files_docs import upload_file_docs, get_upload_status_docs
 from services.storage_service import get_storage
 from services.pdf_processor import PDFProcessor
 from services.vectordb_service import VectorDBInterface, ChromaVectorDB, DocumentChunk
@@ -40,7 +41,7 @@ def get_pdf_processor() -> PDFProcessor:
 def get_vector_db() -> VectorDBInterface:
     return ChromaVectorDB()
 
-@router.post("/upload", status_code=status.HTTP_201_CREATED)
+@router.post("/upload", status_code=status.HTTP_201_CREATED,  **upload_file_docs)
 async def upload_file(
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
@@ -139,7 +140,8 @@ async def upload_file(
         "filename": file.filename,
         "title": bib_metadata.get("title", file.filename)
     }
-@router.get("/upload/{document_id}/status")
+    
+@router.get("/upload/{document_id}/status", **get_upload_status_docs)
 async def get_upload_status(
     document_id: int,
     db: Session = Depends(get_db),
